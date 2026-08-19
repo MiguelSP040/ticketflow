@@ -1,0 +1,277 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-primary: #2563d9;
+  --color-primary-hover: #1d4fb8;
+  --color-sidebar: #143b63;
+  --color-sidebar-active: #1e4e7a;
+  --color-page: #f5f7fa;
+  --color-surface: #ffffff;
+  --color-border: #d9e2ec;
+  --color-text: #172033;
+  --color-muted: #64748b;
+  --color-success: #198754;
+  --color-warning: #d97706;
+  --color-danger: #d64545;
+
+  --color-brand-teal: #2563d9;
+  --color-brand-cream: #f5f7fa;
+  --color-brand-slate: #94a3b8;
+  --color-brand-navy: #172033;
+  --color-brand-scarlet: #d64545;
+
+  --color-sla-green: #198754;
+  --color-sla-yellow: #d97706;
+  --color-sla-orange: #d97706;
+  --color-sla-red: #d64545;
+
+  --color-priority-low: #64748b;
+  --color-priority-medium: #0f766e;
+  --color-priority-high: #d97706;
+  --color-priority-critical: #dc2626;
+
+  --color-status-open: #2563d9;
+  --color-status-assigned: #475569;
+  --color-status-in-progress: #1d4fb8;
+  --color-status-waiting-user: #d97706;
+  --color-status-escalated: #d64545;
+  --color-status-resolved: #198754;
+  --color-status-closed: #64748b;
+  --color-status-cancelled: #64748b;
+}
+
+:root {
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--color-text);
+  background-color: var(--color-page);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+button,
+a,
+[role='button'],
+[role='tab'],
+[role='menuitem'],
+summary,
+label:has(input[type='checkbox']),
+label:has(input[type='radio']),
+select {
+  cursor: pointer;
+}
+
+button:disabled,
+[aria-disabled='true'],
+input:disabled,
+select:disabled,
+textarea:disabled {
+  cursor: not-allowed;
+}
+
+input:not([type='checkbox']):not([type='radio']):not([type='button']):not([type='submit']):not(
+    [type='reset']
+  ):not([type='file']):not([type='color']),
+textarea {
+  cursor: text;
+}
+
+input[type='checkbox'],
+input[type='radio'],
+input[type='color'] {
+  cursor: pointer;
+}
+
+input[type='checkbox']:disabled,
+input[type='radio']:disabled {
+  cursor: not-allowed;
+}
+
+[draggable='true'] {
+  cursor: grab;
+}
+
+[draggable='true']:active,
+.is-dragging {
+  cursor: grabbing;
+}
+
+button,
+a,
+input,
+select,
+textarea,
+[role='tab'],
+.ui-card {
+  transition-property: color, background-color, border-color, box-shadow, opacity, transform;
+  transition-duration: 160ms;
+  transition-timing-function: ease;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[role='tab']:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--color-primary) 35%, transparent);
+  outline-offset: 2px;
+}
+
+main input:not([type='checkbox']):not([type='radio']):not([type='color']),
+main select,
+main textarea {
+  border-color: var(--color-border);
+  background-color: var(--color-surface);
+}
+
+main input:not([type='checkbox']):not([type='radio']):not([type='color']):focus,
+main select:focus,
+main textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 16%, transparent);
+}
+
+.ui-card {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  border-radius: 8px;
+}
+
+@keyframes ticket-flow-dash {
+  to {
+    stroke-dashoffset: -20;
+  }
+}
+@keyframes ticket-flow-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-primary) 22%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 0 10px color-mix(in srgb, var(--color-primary) 0%, transparent);
+  }
+}
+.ticket-flow-canvas {
+  background-color: var(--color-page);
+  background-image: radial-gradient(circle, rgba(23, 32, 51, 0.1) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+.ticket-flow-line-active {
+  animation: ticket-flow-dash 1s linear infinite;
+}
+.ticket-flow-node-active {
+  animation: ticket-flow-pulse 2.2s ease-in-out infinite;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.tf-spinner {
+  animation: tf-spin 0.7s linear infinite;
+}
+
+.tf-brand-pulse {
+  color: var(--color-primary);
+  animation: tf-pulse 1.8s ease-in-out infinite;
+}
+
+.tf-flow-node {
+  fill: var(--color-primary);
+}
+
+.tf-flow-node-mid {
+  fill: var(--color-sidebar);
+}
+
+.tf-flow-line {
+  color: var(--color-primary);
+  opacity: 0.45;
+}
+
+.tf-progress {
+  height: 3px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-primary) 16%, transparent);
+}
+
+.tf-progress span {
+  display: block;
+  height: 100%;
+  width: 40%;
+  background: var(--color-primary);
+  animation: tf-indeterminate 1.2s ease-in-out infinite;
+}
+
+.tf-skeleton [class*='bg-brand-slate'] {
+  animation: tf-shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes tf-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes tf-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(0.98);
+  }
+}
+
+@keyframes tf-indeterminate {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(280%);
+  }
+}
+
+@keyframes tf-shimmer {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tf-spinner,
+  .tf-brand-pulse,
+  .tf-progress span,
+  .tf-skeleton [class*='bg-brand-slate'],
+  .ticket-flow-line-active,
+  .ticket-flow-node-active {
+    animation: none;
+  }
+
+  .tf-progress span {
+    width: 100%;
+    transform: none;
+  }
+}
